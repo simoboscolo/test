@@ -1,0 +1,36 @@
+// Place all the styles related to the Elections controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.individual_election {
+  .col-md-4.text-right {
+    .show_election_button {
+      margin-top: 0px;
+    }
+  }
+}
+
+.election_overview {
+  margin-top: 50px;
+}
+
+.show_election_button {
+  margin-top: 20px;
+}
+
+.candidate_description, .candidate_full_description {
+  cursor: pointer;
+}
+
+.voting_block {
+  position: absolute;
+  bottom: 0;
+}
+
+.col-sm-4.candidate_block {
+  position: relative;
+  min-height: 380px;
+  img {
+    margin-left: 0px;
+  }
+}

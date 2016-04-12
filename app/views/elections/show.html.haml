@@ -1,0 +1,38 @@
+.container
+  .row.election_overview{data: { has_voted: "#{@vote.present?}"}}
+    .col-sm-8.col-sm-offset-2.text-left
+      .row
+        .col-sm-8
+          %h1= @election.title
+          
+        .col-sm-4
+          - if current_organisation.is_admin?(current_user)
+            %button.pull-right.btn.btn-default.show_election_button{:type => "button"}= link_to 'Edit election', edit_organisation_election_path(current_organisation, @election)
+      %p.small-text= "Created by #{content_tag(:strong, User.find(@election.created_by).name)} #{time_ago_in_words(@election.created_at)} ago".html_safe
+      - if @election.candidates.count > 0
+        %p.lead= @election.description
+      - else
+        %p.lead There are no candidates for this election
+
+  %hr.col-sm-10.col-sm-offset-1
+
+  .row
+    .col-sm-8.col-sm-offset-2.text-left
+      - @election.candidates.each_slice(3).to_a.each do |three_candidates|
+        .row{style: "margin-bottom: 20px;"}
+          - three_candidates.each do |candidate|
+            .col-sm-4.candidate_block
+              = image_tag candidate.avatar.present? ? candidate.avatar.url(:square) : 'candidate_placeholder.jpg'
+              %h3= candidate.name
+              %p.candidate_description= truncate(candidate.description, length: 150)
+              %p.candidate_full_description.hide= candidate.description
+              - unless @election.finished?
+                - if @vote
+                  .voting_block
+                    %span.button-checkbox
+                      %button.btn{type: "button", class: @vote.candidate_id == candidate.id ? "btn-success active" : "btn-default", data: {color: "success", id: candidate.id, state: @vote.candidate_id == candidate.id ? "on" : "off", url: organisation_election_vote_path(current_organisation, @election, @vote, candidate_id: candidate.id)}}= @vote.candidate_id == candidate.id ? "Voted" : "Vote"
+                - else
+                  .voting_block
+                    %span.button-checkbox
+                      %button.btn{type: "button", class: "btn-default", data: {color: "success", id: candidate.id, state: "off", url: organisation_election_votes_path(current_organisation, @election, candidate_id: candidate.id)}}= "Vote"
+

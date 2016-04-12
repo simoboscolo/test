@@ -1,0 +1,28 @@
+.row
+  .section.hero
+    .container
+      .row
+        .col-sm-6.col-sm-offset-3
+          %h4.hero-heading Run an election online, how you want it. Voting restricted on emails, and much more.
+          %a.button.button-primary{:href => new_user_registration_path} Sign up now
+  .section.values
+    .container
+      .row
+        .col-sm-4.value
+          %h2.value-multiplier Free
+          %h5.value-heading Free to use
+          %p.value-description With as many users and candidates as you want
+        .col-sm-4.value
+          %h2.value-multiplier Easy
+          %h5.value-heading Easy elections online
+          %p.value-description We have a simple and intuitive online way to create and run an election
+        .col-sm-4.value
+          %h2.value-multiplier Control
+          %h5.value-heading Control your election
+          %p.value-description Control who can vote, when they can vote, and view the results in real time.
+  .section.get-help
+    .container
+      %h3.section-heading Need help getting started?
+      %p.section-description= "The Ballot App is very easy to use, you can sign up using the button below, or alternatively get in touch through #{mail_to 'me@nickdowse.co.nz'}.".html_safe
+      %a.button.button-primary{:href => new_user_registration_path} Sign up for free
+%link{:href => "//fonts.googleapis.com/css?family=Raleway:400,300,600", :rel => "stylesheet", :type => "text/css"}/

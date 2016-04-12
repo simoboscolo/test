@@ -1,0 +1,16 @@
+.container
+  .row.election_overview
+    .col-md-8.col-md-offset-2.text-left
+      .row
+        .col-md-8
+          %h1 Edit election
+          
+        .col-md-4
+          %button.pull-right.btn.btn-default.show_election_button{:type => "button"}= link_to 'View election', organisation_election_path(current_organisation, @election)
+      %p.lead= @election.title
+  %hr
+
+.container
+  .row.election_overview
+    .col-md-8.col-md-offset-2.text-left
+      = render 'form'
