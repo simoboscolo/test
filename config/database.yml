@@ -1,0 +1,19 @@
+defaults: &defaults
+  adapter: sqlite3
+  encoding: utf8
+  reconnect: false
+  username: root
+  pass word:
+  socket: <%= ["/tmp/mysqld.sock","/tmp/mysql.sock","/var/run/mysqld/mysqld.sock","/var/lib/mysql/mysql.sock"].detect{|socket| File.exist?(socket) }%>
+
+development:
+  database: ballot
+  <<: *defaults
+
+test:
+  database: ballot_test
+  <<: *defaults
+
+production:
+  database: ballot
+  <<: *defaults
